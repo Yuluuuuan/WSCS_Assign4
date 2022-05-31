@@ -1,0 +1,46 @@
+name: process
+version: 1.0.0
+kind: ecu
+
+dependencies:
+  - python3
+  - python3-yaml
+  - python3-pip
+
+files:
+  - process.py
+
+install:
+  - pip3 install numpy
+  - pip3 install pandas
+
+entrypoint:
+  kind: task
+  exec: process.py
+
+actions:
+  'create_train_dateset':
+    command:
+      args:
+        - create_train_dateset
+      capture: marked
+
+    input:
+      - type: string
+        name: file
+    output:
+      - type: string
+        name: output
+
+  'create_test_dateset':
+    command:
+      args:
+        - create_test_dateset
+      capture: marked
+
+    input:
+      - type: string
+        name: file
+    output:
+      - type: string
+        name: output

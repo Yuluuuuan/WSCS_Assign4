@@ -1,0 +1,48 @@
+name: line
+version: 1.0.0
+kind: ecu
+
+dependencies:
+  - python3
+  - python3-pip
+  - python3-yaml
+
+files:
+- line.py
+
+install:
+  - pip3 install pandas
+  - pip3 install matplotlib
+  - pip3 install shapely
+  - pip3 install numpy
+  - pip3 install seaborn
+
+entrypoint:
+  kind: task
+  exec: line.py
+
+actions:
+  'draw_line':
+    command:
+      args:
+        - draw_line
+    input:
+      - type: string
+        name: csv_path
+      - type: string
+        name: output_path
+    output:
+      - type: string
+        name: output
+  'draw_pre':
+    command:
+      args:
+        - draw_pre
+    input:
+      - name: csv_path
+        type: string
+      - type: string
+        name: output_path
+    output:
+      - type: string
+        name: output

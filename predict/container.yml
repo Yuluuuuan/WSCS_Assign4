@@ -1,0 +1,73 @@
+name: predict
+version: 1.0.0
+kind: ecu
+
+dependencies:
+  - python3
+  - python3-yaml
+  - python3-pip
+
+
+files:
+  - predict.py
+
+install:
+  - pip3 install scikit-learn
+  - pip3 install numpy
+  - pip3 install pandas
+  - pip3 install xgboost
+
+entrypoint:
+  kind: task
+  exec: predict.py
+
+actions:
+  'run_LR':
+    command:
+      args:
+        - run_LR
+    input:
+      - type: string
+        name: input_path
+      - type: string
+        name: output_path
+    output:
+      - type: string
+        name: output
+  'run_RF':
+    command:
+      args:
+        - run_RF
+    input:
+      - type: string
+        name: input_path
+      - type: string
+        name: output_path
+    output:
+      - type: string
+        name: output
+  'run_xgboost':
+    command:
+      args:
+        - run_xgboost
+    input:
+      - type: string
+        name: input_path
+      - type: string
+        name: output_path
+    output:
+      - type: string
+        name: output
+  'final_result':
+    command:
+      args:
+        - final_result
+    input:
+      - type: string
+        name: input_path
+      - type: string
+        name: output_path
+    output:
+      - type: string
+        name: output
+
