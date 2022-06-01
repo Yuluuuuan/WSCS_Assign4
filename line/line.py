@@ -119,6 +119,6 @@ if __name__ == "__main__":
         "draw_pre":draw_pre,
     }
     output = functions[command](csv_path,output_path)
-    print("--> START CAPTURE")
+    # print("--> START CAPTURE")
     print(yaml.dump({"output": output}))
-    print("--> END CAPTURE")
+    # print("--> END CAPTURE")
