@@ -83,6 +83,6 @@ if __name__ == "__main__":
         "create_map": create_map,
     }
     output = functions[command](csv_path,output_path)
-    print("--> START CAPTURE")
+    # print("--> START CAPTURE")
     print(yaml.dump({"output": output}))
-    print("--> END CAPTURE")
+    # print("--> END CAPTURE")
